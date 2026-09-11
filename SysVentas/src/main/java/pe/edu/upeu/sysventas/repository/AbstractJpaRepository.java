@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class AbstractJpaRepository <T,ID>
-               implements ICrudGenericoRepository<T,ID>{
-    protected final List<T>data=new ArrayList<T>();
+public abstract class AbstractJpaRepository<T,ID>
+        implements ICrudGenericoRepository<T,ID>{
+
+    protected final List<T> data=new ArrayList<>();
 
     protected abstract ID getId(T entity);
     protected abstract void setId(T entity, ID id);
@@ -32,8 +33,9 @@ public abstract class AbstractJpaRepository <T,ID>
                 return entity;
             }
         }
-        throw  new RuntimeException("No se encontro la entidad con el ID"+id);
+        throw  new RuntimeException("No se encontro la entidad con el ID:"+id);
     }
+
     @Override
     public Optional<T> findById(ID id) {
         return data.stream()

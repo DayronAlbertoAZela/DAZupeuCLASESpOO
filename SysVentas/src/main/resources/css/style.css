@@ -16,7 +16,7 @@
    ========================= */
 
 .btn-primary {
-    -fx-background-color: #000000;
+    -fx-background-color: #0d6efd;
     -fx-text-fill: white;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .btn-success:hover {
-    -fx-background-color: #00a4fd;
+    -fx-background-color: #157347;
 }
 
 .btn-success:pressed {
@@ -50,7 +50,7 @@
    ========================= */
 
 .btn-danger {
-    -fx-background-color: #bd2121;
+    -fx-background-color: #dc3545;
     -fx-text-fill: white;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .btn-danger:pressed {
-    -fx-background-color: #b02a37;
+    -fx-background-color: #ea4958;
 }
 
 /* =========================
@@ -67,7 +67,7 @@
    ========================= */
 
 .btn-warning {
-    -fx-background-color: #ffde07;
+    -fx-background-color: #ffc107;
     -fx-text-fill: black;
 }
 
