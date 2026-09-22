@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-public  class UnidadMedidaServiceImp extends CrudGenericoServiceimp<UnidMedida, Long>
+public class UnidadMedidaServiceImp extends CrudGenericoServiceImp<UnidMedida, Long>
         implements IUnidadMedidaService {
 
     private final UnidadMedidaRepository unidadMedidaRepository;
@@ -21,6 +21,7 @@ public  class UnidadMedidaServiceImp extends CrudGenericoServiceimp<UnidMedida, 
     protected ICrudGenericoRepository<UnidMedida, Long> getRepo() {
         return unidadMedidaRepository;
     }
+
     @Override
     public List<ComboBoxOption> listarCombobox() {
         if(unidadMedidaRepository.findAll().isEmpty()) {
@@ -35,4 +36,5 @@ public  class UnidadMedidaServiceImp extends CrudGenericoServiceimp<UnidMedida, 
         }
         return listar;
     }
+
 }

@@ -25,6 +25,7 @@ import pe.edu.upeu.sysventas.service.IProductoService;
 import pe.edu.upeu.sysventas.service.IUnidadMedidaService;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.function.Consumer;
 
 @RequiredArgsConstructor
@@ -33,6 +34,7 @@ public class ProductoController {
     private final ICategoriaService cs;
     private final IProductoService ps;
     private final IUnidadMedidaService us;
+
     @FXML
     TextField txtNombreProducto, txtPUnit,
             txtPUnitOld, txtUtilidad, txtStock, txtStockOld, txtFiltroDato;
@@ -48,19 +50,23 @@ public class ProductoController {
     Label lbnMsg;
     @FXML private AnchorPane miContenedor;
     Stage stage;
+
     private Validator validator;
     ObservableList<Producto> listarProducto;
     Producto formulario;
     Long idProductoCE = 0L;
 
     private final ToltipCustom ttc=new ToltipCustom();
+
+
     @FXML
-    public void initialize() {
+    public void initialize(){
         System.out.println("Holas");
         cbxTipoProducto.getItems().addAll(ps.listarTipoProducto());
         cbxMarca.getItems().addAll(ms.listarCombobox());
         cbxCategoria.getItems().addAll(cs.listarCombobox());
-       cbxUnidMedida.getItems().addAll(us.listarCombobox());
+        cbxUnidMedida.getItems().addAll(us.listarCombobox());
+
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
 
@@ -75,19 +81,24 @@ public class ProductoController {
         columns.put("Marca", new ColumnInfo("idMarca.nombre", 200.0));
         columns.put("Categoria", new ColumnInfo("idCategoria.nombre", 200.0));
 
-        Consumer<Producto> updateAction = producto -> {/*editForm(producto);*/};
+        Consumer<Producto> updateAction = producto ->{ /* editForm(producto);*/ };
         Consumer<Producto> deleteAction = producto -> {
             ps.delete(producto.getIdProducto());
             double w = stage.getWidth() / 1.5, h = stage.getHeight() / 2;
             Toast.showToast(stage, "Se eliminó correctamente!!", 2000, w, h);
             listar();
         };
+
         tableViewHelper.addColumnsInOrderWithSize(tableView, columns, updateAction, deleteAction);
         tableView.setTableMenuButtonVisible(true);
         listar();
+
     }
+
+
     public void listar() {
         try {
+
             tableView.getItems().clear();
             listarProducto = FXCollections.observableArrayList(ps.findAll());
             tableView.getItems().addAll(listarProducto);

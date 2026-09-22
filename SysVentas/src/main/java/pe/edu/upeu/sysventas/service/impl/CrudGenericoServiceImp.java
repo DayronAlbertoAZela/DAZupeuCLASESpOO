@@ -6,8 +6,10 @@ import pe.edu.upeu.sysventas.service.ICrudGenericoService;
 
 import java.util.List;
 
-public abstract class CrudGenericoServiceimp<T,ID> implements ICrudGenericoService<T,ID> {
-    protected abstract ICrudGenericoRepository<T,ID>getRepo();
+public abstract class CrudGenericoServiceImp<T, ID> implements ICrudGenericoService<T,ID> {
+
+    protected abstract ICrudGenericoRepository<T,ID> getRepo();
+
     @Override
     public T save(T t) {
         return getRepo().save(t);
@@ -15,9 +17,10 @@ public abstract class CrudGenericoServiceimp<T,ID> implements ICrudGenericoServi
 
     @Override
     public T update(ID id, T t) {
-        if (!getRepo().existsById(id))
-            throw  new ModelNotFoundException("ID no existe");
-        return null;
+        if(!getRepo().existsById(id)){
+            throw new ModelNotFoundException("Id no existe: "+id);
+        }
+        return getRepo().update(t);
     }
 
     @Override
@@ -27,13 +30,15 @@ public abstract class CrudGenericoServiceimp<T,ID> implements ICrudGenericoServi
 
     @Override
     public T findById(ID id) {
-        return getRepo().findById(id).orElseThrow(()->new ModelNotFoundException("ID no existe:"+id));
+        return getRepo().findById(id).orElseThrow(
+                ()->new ModelNotFoundException("El id no existe:"+id));
     }
 
     @Override
     public void delete(ID id) {
-        if (!getRepo().existsById(id))
-            throw new ModelNotFoundException("ID no existe");
+        if(!getRepo().existsById(id)){
+            throw new ModelNotFoundException("Id no existe: "+id);
+        }
         getRepo().deleteById(id);
     }
 }

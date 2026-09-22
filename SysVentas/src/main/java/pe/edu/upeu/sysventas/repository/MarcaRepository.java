@@ -1,6 +1,8 @@
 package pe.edu.upeu.sysventas.repository;
+
 import pe.edu.upeu.sysventas.model.Marca;
-public class MarcaRepository extends AbstractJpaRepository<Marca , Long>{
+
+public class MarcaRepository extends AbstractJpaRepository<Marca, Long>{
     private long sequence=1;
     @Override
     protected Long getId(Marca entity) {
@@ -16,6 +18,7 @@ public class MarcaRepository extends AbstractJpaRepository<Marca , Long>{
     protected Long generateId() {
         return sequence++;
     }
+
     public void seedData() {
         if (findAll().isEmpty()) {
             save(new Marca(generateId(), "Samsung"));
@@ -25,4 +28,5 @@ public class MarcaRepository extends AbstractJpaRepository<Marca , Long>{
             save(new Marca(generateId(),"Lenovo"));
         }
     }
+
 }

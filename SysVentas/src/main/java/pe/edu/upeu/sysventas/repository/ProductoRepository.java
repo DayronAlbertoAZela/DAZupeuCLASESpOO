@@ -22,21 +22,18 @@ public class ProductoRepository extends AbstractJpaRepository<Producto, Long>{
     protected Long generateId() {
         return sequence++;
     }
+
     public void seedData() {
         if (findAll().isEmpty()) {
-
             Categoria categoria = new Categoria();
             categoria.setIdCategoria(1L);
-
             Marca marca = new Marca();
             marca.setIdMarca(1L);
-
             UnidMedida unidMedida = new UnidMedida();
             unidMedida.setIdUnidad(1L);
-
             save(new Producto(generateId(), "Televisor", TipoProducto.PRODUCTO ,
                     0.0, 0.0, 0.0, 0.0, 0.0,categoria, marca,unidMedida));
         }
     }
-}
 
+}

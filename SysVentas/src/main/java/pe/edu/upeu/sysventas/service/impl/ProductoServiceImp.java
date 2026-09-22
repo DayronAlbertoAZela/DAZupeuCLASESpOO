@@ -12,12 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
-public class ProductoServiceImp extends CrudGenericoServiceimp<Producto,Long>implements IProductoService {
-    private final  ProductoRepository productoRepository;
+public class ProductoServiceImp extends CrudGenericoServiceImp<Producto, Long> implements IProductoService {
+
+    private final ProductoRepository productoRepository;
+
     @Override
     protected ICrudGenericoRepository<Producto, Long> getRepo() {
         return productoRepository;
     }
+
     @Override
     public List<ComboBoxOption> listarTipoProducto() {
         List<ComboBoxOption> listar = new ArrayList<>();
@@ -28,8 +31,8 @@ public class ProductoServiceImp extends CrudGenericoServiceimp<Producto,Long>imp
             listar.add(cb);
         }
         return listar;
-
     }
+
     @Override
     public List<Producto> findAll() {
         if(productoRepository.findAll().isEmpty()) {
