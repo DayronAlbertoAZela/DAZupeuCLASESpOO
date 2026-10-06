@@ -15,21 +15,26 @@ import java.io.IOException;
 import java.util.Map;
 
 public class MainGuiController {
+
     @FXML
     TabPane tabPane;
+
     @FXML
-    MenuItem menuItem1,menuItem2;
+    MenuItem menuItem1, menuItem2;
+
     @FXML
-    public  void initialize(){
+    public void initialize(){
         MenuItemListener miL=new MenuItemListener();
         menuItem1.setOnAction(miL::handle);
         menuItem2.setOnAction(miL::handle);
     }
+
     class MenuItemListener{
         Map<String, String[]> menuConfig= Map.of(
                 "menuItem1", new String[]{"/view/main_producto.fxml", "Adm. Producto", "T"},
                 "menuItem2", new String[]{"/view/login.fxml", "Salir", "C"}
         );
+
         public void handle(ActionEvent e){
             String id=((MenuItem)e.getSource()).getId();
             if(menuConfig.containsKey(id)){
@@ -61,5 +66,6 @@ public class MainGuiController {
             }
         }
     }
-    }
 
+
+}
